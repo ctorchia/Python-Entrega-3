@@ -1,0 +1,65 @@
+{% extends "clientes/inicio.html" %}
+
+{% block titulo %} Clientes {%endblock%}
+
+{% block CardSection %} {% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold mb-0">Listado de Clientes</h2>
+        <form method="GET" class="d-flex" role="search">
+            <input
+                type="text"
+                name="nombre"
+                class="form-control"
+                placeholder="Buscar por nombre"
+                value="{{ request.GET.nombre}}">
+        </form>
+        <a href="{% url 'crear_cliente' %}" class="btn btn-dark">
+            + Agregar Cliente
+        </a>
+    </div>
+
+    {% if clientes_list %}
+        <div class="table-container shadow">
+            <table class="table table-striped table-hover align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>N° Cliente</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Email</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cliente in clientes_list %}
+                    <tr>
+                        <td>{{ cliente.nro_cliente }}</td>
+                        <td>{{ cliente.nombre }}</td>
+                        <td>{{ cliente.apellido }}</td>
+                        <td>{{ cliente.email }}</td>
+                        <td>
+                            <div class="btn-group">
+                                <a href="{% url 'ver_cliente' cliente.nro_cliente %}"
+                                class="btn btn-sm btn-info text-white">
+                                    Ver
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="alert alert-info text-center shadow" role="alert"
+            style="background-color: #cfe2ff;">
+            <strong>No hay clientes cargados</strong>
+        </div>
+    {% endif %}
+
+</div>
+{% endblock %}
