@@ -5,11 +5,13 @@ from clientes.forms import ClienteForm
 def inicio(request):
     return render(request, "clientes/inicio.html")
 
-
-
 def listar_clientes(request):
-   
-    clientes_query = Clientes.objects.all()    # [:20] 
+    nombre = request.GET.get("nombre")
+    clientes_query = Clientes.objects.all()    # [:10] 
+    if nombre is not None:
+        clientes_query = Clientes.objects.filter(
+            nombre__icontains=nombre
+        )
     context = {
         "clientes_list": clientes_query
     }
