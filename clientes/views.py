@@ -14,4 +14,12 @@ def listar_clientes(request):
     }
     return render(request, "clientes/clientes_list.html", context)
 
-
+def ver_cliente(request, nro_cliente):
+    try:
+        cliente = Clientes.objects.get(nro_cliente=nro_cliente)
+    except Clientes.DoesNotExist:
+        return render(request, "error_404.html")
+    context = {
+        "cliente" : cliente
+    }
+    return render(request, "clientes/ver_cliente.html",context)
