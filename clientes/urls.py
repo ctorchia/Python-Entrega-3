@@ -5,4 +5,5 @@ urlpatterns = [
     path("",inicio, name="inicio"),
     path("clientes_list/", listar_clientes, name="clientes_list"),
     path("ver_cliente/<int:nro_cliente>/", ver_cliente, name="ver_cliente"),
+    path("crear_cliente/", crear_cliente, name="crear_cliente"),
 ]

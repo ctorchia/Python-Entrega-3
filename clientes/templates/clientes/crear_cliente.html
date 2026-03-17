@@ -1,0 +1,107 @@
+{% extends "clientes/inicio.html" %}
+
+{% block titulo %} Agregar Clientes {%endblock%}
+
+{% block CardSection %} {% endblock %}
+
+{% block content %}
+
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card p-4" style="width: 35rem;">
+        <h3 class="text-center mb-4">➕ Nuevo Cliente</h3>
+
+        <form method="POST" action="{% url 'crear_cliente' %}">
+            {% csrf_token %}
+
+            <!-- ERRORES GENERALES -->
+            {% if form.non_field_errors %}
+            <div class="alert alert-danger">
+                {{ form.non_field_errors }}
+            </div>
+            {% endif %}
+
+            <!-- NOMBRE -->
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                {{ form.nombre }}
+                {% if form.nombre.errors %}
+                <div class="text-danger small">
+                    {{ form.nombre.errors }}
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- APELLIDO -->
+            <div class="mb-3">
+                <label class="form-label">Apellido</label>
+                {{ form.apellido }}
+                {% if form.apellido.errors %}
+                <div class="text-danger small">
+                    {{ form.apellido.errors }}
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- FECHA -->
+            <div class="mb-3">
+                <label class="form-label">Fecha de nacimiento</label>
+                {{ form.fecha_de_nacimiento }}
+                {% if form.fecha_de_nacimiento.errors %}
+                <div class="text-danger small">
+                    {{ form.fecha_de_nacimiento.errors }}
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- DNI -->
+            <div class="mb-3">
+                <label class="form-label">DNI</label>
+                {{ form.dni }}
+                {% if form.dni.errors %}
+                <div class="text-danger small">
+                    {{ form.dni.errors }}
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- EMAIL -->
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                {{ form.email }}
+                {% if form.email.errors %}
+                <div class="text-danger small">
+                    {{ form.email.errors }}
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- NRO CLIENTE -->
+            <div class="mb-3">
+                <label class="form-label">N° Cliente</label>
+                {{ form.nro_cliente }}
+                {% if form.nro_cliente.errors %}
+                <div class="text-danger small">
+                    {{ form.nro_cliente.errors }}
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- BOTONES -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a href="{% url 'clientes_list' %}" class="btn btn-secondary">
+                    Cancelar
+                </a>
+
+                <button type="submit" class="btn btn-art">
+                    Confirmar
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

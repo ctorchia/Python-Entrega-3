@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from clientes.models import Clientes
+from clientes.forms import ClienteForm
 
 def inicio(request):
     return render(request, "clientes/inicio.html")
@@ -23,3 +24,16 @@ def ver_cliente(request, nro_cliente):
         "cliente" : cliente
     }
     return render(request, "clientes/ver_cliente.html",context)
+
+def crear_cliente(request):
+    if request.method == "POST":
+        form = ClienteForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('clientes_list')
+    else:
+        form = ClienteForm()
+    
+    return render(request, "clientes/crear_cliente.html", {
+        "form": form
+    })
