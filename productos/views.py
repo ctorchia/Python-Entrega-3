@@ -3,8 +3,8 @@ from .models import Productos
 from .forms import ProductoForm
 
 def productos_list(request):
-    productos = Productos.objects.all()
-    return render(request, "productos/productos_list.html", {"productos": productos})
+    productos_list = Productos.objects.all()
+    return render(request, "productos/productos_list.html", {"productos_list": productos_list})
 
 def ver_producto(request, cod_producto):
     try:
@@ -14,7 +14,7 @@ def ver_producto(request, cod_producto):
     context = {
         "producto" : producto
     }
-    return render(request, "productos/ver_productos.html",context)
+    return render(request, "productos/ver_producto.html",context)
 def crear_producto(request):
     if request.method == "POST":
         form = ProductoForm(request.POST)
@@ -24,4 +24,4 @@ def crear_producto(request):
     else:
         form = ProductoForm()
 
-    return render(request, "productos/producto_form.html", {"form": form})
+    return render(request, "productos/crear_producto.html", {"form": form})

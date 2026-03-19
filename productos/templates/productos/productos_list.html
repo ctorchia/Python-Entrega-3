@@ -39,12 +39,12 @@
                     {% for producto in productos_list %}
                     <tr>
                         <td>{{ producto.cod_producto }}</td>
-                        <td>{{ producto.nombre }}</td>
-                        <td>{{ producto.cuit }}</td>
-                        <td>{{ producto.email }}</td>
+                        <td>{{ producto.descripcion }}</td>
+                        <td>{{ producto.precio }}</td>
+                        <td>{{ producto.cantidad }}</td>
                         <td>
                             <div class="btn-group">
-                                <a href="{% url 'ver_producto' producto.nro_producto %}"
+                                <a href="{% url 'ver_producto' producto.cod_producto %}"
                                 class="btn btn-sm btn-info text-white">
                                     Ver
                                 </a>

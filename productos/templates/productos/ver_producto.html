@@ -1,0 +1,87 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Producto</title>
+
+    <style>
+        body {
+            background-color: #fdf6f0;
+        }
+
+        .navbar {
+            background-color: #f8d7da;
+        }
+
+        .card-art {
+            background-color: #fff9e6;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-art {
+            background-color: #c8e6c9;
+            border: none;
+        }
+
+        .label {
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+
+            <a class="navbar-brand fw-bold" href="{% url 'inicio' %}">
+                🎨 Artesanías
+            </a>
+
+        </div>
+    </nav>
+
+
+    <div class="container mt-5 d-flex justify-content-center">
+
+        <div class="card card-art p-4" style="width: 28rem;">
+
+            <h3 class="text-center mb-4">👤 Producto</h3>
+
+            <p><span class="label">Descripcion:</span> {{ producto.descripcion }}</p>
+
+            <p><span class="label">Cod. Producto:</span> {{ producto.cod_producto }}</p>
+
+            <p><span class="label">Precio:</span> {{ producto.precio }}</p>
+
+            <p><span class="label">Cantidad:</span> {{ producto.cantidad }}</p>
+
+            <div class="text-center mt-3">
+
+                <a href="{% url 'productos_list' %}" class="btn btn-art">
+                    Volver
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
