@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Proveedor
+from .models import Proveedores
 from .forms import ProveedorForm
 def proveedores_list(request):
     proveedores = Proveedor.objects.all()

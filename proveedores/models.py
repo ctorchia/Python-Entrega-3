@@ -1,6 +1,6 @@
 from django.db import models
 
-class Proveedor(models.Model):
+class Proveedores(models.Model):
 
     nro_proveedor = models.IntegerField(unique=True)
     nombre = models.CharField(max_length=100)
