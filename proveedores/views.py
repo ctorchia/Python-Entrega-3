@@ -5,6 +5,22 @@ def proveedores_list(request):
     proveedores_list = Proveedores.objects.all()
     return render(request, "proveedores/proveedores_list.html", {"proveedores_list": proveedores_list})
 
+
+
+def listar_proveedores(request):
+    nombre = request.GET.get("nombre")
+    proveedores_query = Proveedores.objects.all() 
+    if nombre is not None:
+        proveedores_query = Proveedores.objects.filter(
+            nombre__icontains=nombre
+        )
+    context = {
+        "proveedores_list": proveedores_query
+    }
+    return render(request, "proveedores/proveedores_list.html", context)
+
+
+
 def ver_proveedor(request, nro_proveedor):
     try:
         proveedor = Proveedores.objects.get(nro_proveedor=nro_proveedor)
