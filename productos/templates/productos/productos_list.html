@@ -1,33 +1,66 @@
-{% extends "base.html" %}
+{% extends "clientes/inicio.html" %}
 
 {% block titulo %}Productos{% endblock %}
+
+{% block CardSection %} {% endblock %}
 
 {% block content %}
 
 <div class="container mt-5">
 
-<h2 class="mb-4 text-center">Productos</h2>
-
-<a href="{% url 'crear_producto' %}" class="btn btn-art mb-3">
-➕ Nuevo Producto
-</a>
-
-<div class="row g-4">
-
-{% for producto in productos %}
-
-<div class="col-md-4">
-    <div class="card p-3">
-        <h5>{{ producto.descripcion }}</h5>
-        <p><strong>Código:</strong> {{ producto.cod_producto }}</p>
-        <p><strong>Precio:</strong> ${{ producto.precio }}</p>
-        <p><strong>Cantidad:</strong> {{ producto.cantidad }}</p>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold mb-0">Listado de Productos</h2>
+        <form method="GET" class="d-flex" role="search">
+            <input
+                type="text"
+                name="nombre"
+                class="form-control"
+                placeholder="Buscar por nombre"
+                value="{{ request.GET.nombre}}">
+        </form>
+        <a href="{% url 'crear_producto' %}" class="btn btn-dark">
+            + Agregar Producto
+        </a>
     </div>
-</div>
 
-{% endfor %}
-
-</div>
+    {% if productos_list %}
+        <div class="table-container shadow">
+            <table class="table table-striped table-hover align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Código de Producto</th>
+                        <th>Descripcion</th>
+                        <th>Precio/th>
+                        <th>Cantidad</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for producto in productos_list %}
+                    <tr>
+                        <td>{{ producto.cod_producto }}</td>
+                        <td>{{ producto.nombre }}</td>
+                        <td>{{ producto.cuit }}</td>
+                        <td>{{ producto.email }}</td>
+                        <td>
+                            <div class="btn-group">
+                                <a href="{% url 'ver_producto' producto.nro_producto %}"
+                                class="btn btn-sm btn-info text-white">
+                                    Ver
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="alert alert-info text-center shadow" role="alert"
+            style="background-color: #cfe2ff;">
+            <strong>No hay productos cargados</strong>
+        </div>
+    {% endif %}
 
 </div>
 
