@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
-from .models import Producto
+from .models import Productos
 from .forms import ProductoForm
 
 def productos_list(request):
-    productos = Producto.objects.all()
+    productos = Productos.objects.all()
     return render(request, "productos/productos_list.html", {"productos": productos})
 
 

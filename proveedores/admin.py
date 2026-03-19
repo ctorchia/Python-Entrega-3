@@ -7,4 +7,4 @@ class ClienteAdmin(admin.ModelAdmin):
     list_display_links = ("nombre",)
     search_fields = ("cuit",)
     ordering = ("nro_proveedor", "nombre")
-    readonly_fields = ("nro_proveedor",)
+    # readonly_fields = ("nro_proveedor",)

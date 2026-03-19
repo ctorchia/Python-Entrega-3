@@ -36,12 +36,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for cliente in clientes_list %}
+                    {% for proveedor in proveedores_list %}
                     <tr>
-                        <td>{{ cliente.nro_proveedor }}</td>
-                        <td>{{ cliente.nombre }}</td>
-                        <td>{{ cliente.cuit }}</td>
-                        <td>{{ cliente.email }}</td>
+                        <td>{{ proveedor.nro_proveedor }}</td>
+                        <td>{{ proveedor.nombre }}</td>
+                        <td>{{ proveedor.cuit }}</td>
+                        <td>{{ proveedor.email }}</td>
                         <td>
                             <div class="btn-group">
                                 <a href="{% url 'ver_proveedor' proveedor.nro_proveedor %}"
