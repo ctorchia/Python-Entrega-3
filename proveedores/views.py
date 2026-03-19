@@ -25,4 +25,4 @@ def crear_proveedor(request):
     else:
         form = ProveedorForm()
 
-    return render(request, "proveedores/proveedor_form.html", {"form": form})
+    return render(request, "proveedores/crear_proveedor.html", {"form": form})

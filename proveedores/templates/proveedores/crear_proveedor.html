@@ -1,0 +1,79 @@
+{% extends "clientes/inicio.html" %}
+
+{% block titulo %} Agregar Proveedor {%endblock%}
+
+{% block CardSection %} {% endblock %}
+
+{% block content %}
+
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card p-4" style="width: 35rem;">
+        <h3 class="text-center mb-4">➕ Nuevo Cliente</h3>
+
+        <form method="POST" action="{% url 'crear_proveedor' %}">
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+            <div class="alert alert-danger">
+                {{ form.non_field_errors }}
+            </div>
+            {% endif %}
+
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                {{ form.nombre }}
+                {% if form.nombre.errors %}
+                <div class="text-danger small">
+                    {{ form.nombre.errors }}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">CUIT</label>
+                {{ form.cuit }}
+                {% if form.cuit.errors %}
+                <div class="text-danger small">
+                    {{ form.cuit.errors }}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                {{ form.email }}
+                {% if form.email.errors %}
+                <div class="text-danger small">
+                    {{ form.email.errors }}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">N° Cliente</label>
+                {{ form.nro_proveedor }}
+                {% if form.nro_proveedor.errors %}
+                <div class="text-danger small">
+                    {{ form.nro_proveedor.errors }}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+
+                <a href="{% url 'proveedores_list' %}" class="btn btn-secondary">
+                    Cancelar
+                </a>
+
+                <button type="submit" class="btn btn-art">
+                    Confirmar
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
