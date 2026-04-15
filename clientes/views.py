@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from clientes.models import Clientes
-from clientes.forms import ClienteForm
+from clientes.forms import ClienteForm, ClienteUpdateForm
 
 def inicio(request):
     return render(request, "clientes/inicio.html")
@@ -39,3 +39,17 @@ def crear_cliente(request):
     return render(request, "clientes/crear_cliente.html", {
         "form": form
     })
+
+
+def actualizar_cliente(request, nro_cliente):
+    cliente = get_object_or_404(Clientes, nro_cliente=nro_cliente)
+    if request.method == "POST":
+        form = ClienteUpdateForm(request.POST, instance=cliente)
+        if form.is_valid():
+            form.save()
+            return redirect("clientes_list")
+    else:
+        form = ClienteUpdateForm(instance=cliente)
+
+    context = {"form": form}
+    return render(request, "clientes/actualizar_cliente.html", context)
