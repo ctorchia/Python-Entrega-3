@@ -53,3 +53,11 @@ def actualizar_cliente(request, nro_cliente):
 
     context = {"form": form}
     return render(request, "clientes/actualizar_cliente.html", context)
+
+
+def eliminar_cliente(request, nro_cliente):
+    cliente = get_object_or_404(Clientes, nro_cliente=nro_cliente)
+    if request.method == "POST":
+        cliente.delete()
+        return redirect("clientes_list")
+    return redirect("clientes_list")
