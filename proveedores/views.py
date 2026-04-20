@@ -32,7 +32,7 @@ class ProveedoresDetailView(DetailView):
 
 class ProveedoresDeleteView(DeleteView):
     model = Proveedores
-    template_name = "proveedores/profes_confirm_delete.html"
+    template_name = "proveedores/proveedores_confirm_delete.html"
     success_url = reverse_lazy("proveedores_list")
 
 
