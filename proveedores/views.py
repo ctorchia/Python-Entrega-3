@@ -32,6 +32,8 @@ class ProveedoresDetailView(DetailView):
 
 class ProveedoresDeleteView(DeleteView):
     model = Proveedores
+    slug_field = "nro_proveedor"
+    slug_url_kwarg = "nro_proveedor"
     template_name = "proveedores/proveedores_confirm_delete.html"
     success_url = reverse_lazy("proveedores_list")
 
