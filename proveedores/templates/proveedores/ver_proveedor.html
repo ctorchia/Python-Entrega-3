@@ -76,8 +76,38 @@
                 <a href="{% url 'proveedores_list' %}" class="btn btn-art">
                     Volver
                 </a>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                    Eliminar cliente
+                </button>
 
             </div>
+
+
+            <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content rounded-4 shadow-lg">
+                        <div class="modal-header bg-danger text-white rounded-top-4">
+                            <h5 class="modal-title" id="deleteModalLabel">Confirmar eliminación</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                aria-label="Cerrar"></button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <p>¿Seguro que querés eliminar a {{ proveedor.nombre}}</strong> (Nro Proveedor {{ proveedor.nro_proveedor }})?</p>
+                        </div>
+                        <div class="modal-footer justify-content-center">
+                            <form method="POST" action="{% url 'eliminar_proveedor' proveedor.nro_proveedor %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+                            </form>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
 
         </div>
 
