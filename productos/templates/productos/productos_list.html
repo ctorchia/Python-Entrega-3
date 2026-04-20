@@ -30,7 +30,7 @@
                     <tr>
                         <th>Código de Producto</th>
                         <th>Descripcion</th>
-                        <th>Precio/th>
+                        <th>Precio</th>
                         <th>Cantidad</th>
                         <th>Acciones</th>
                     </tr>
@@ -47,6 +47,12 @@
                                 <a href="{% url 'ver_producto' producto.cod_producto %}"
                                 class="btn btn-sm btn-info text-white">
                                     Ver
+                                </a>
+                            </div>
+                            <div class="btn-group">
+                                <a href="{% url 'actualizar_producto' producto.cod_producto %}"
+                                class="btn btn-sm btn-warning text-white">
+                                    Actualizar
                                 </a>
                             </div>
                         </td>

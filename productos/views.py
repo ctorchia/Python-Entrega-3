@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Productos
-from .forms import ProductoForm
+from .forms import ProductoForm, ProductoUpdateForm
 
 def productos_list(request):
     productos_list = Productos.objects.all()
@@ -29,6 +29,7 @@ def ver_producto(request, cod_producto):
         "producto" : producto
     }
     return render(request, "productos/ver_producto.html",context)
+
 def crear_producto(request):
     if request.method == "POST":
         form = ProductoForm(request.POST)
@@ -39,3 +40,24 @@ def crear_producto(request):
         form = ProductoForm()
 
     return render(request, "productos/crear_producto.html", {"form": form})
+
+def actualizar_producto(request, cod_producto):
+    producto = get_object_or_404(Productos, cod_producto=cod_producto)
+    if request.method == "POST":
+        form = ProductoUpdateForm(request.POST, instance=producto)
+        if form.is_valid():
+            form.save()
+            return redirect("productos_list")
+    else:
+        form = ProductoUpdateForm(instance=producto)
+
+    context = {"form": form}
+    return render(request, "clientes/actualizar_cliente.html", context)
+
+
+def eliminar_producto(request, cod_producto):
+    producto = get_object_or_404(Productos, cod_producto=cod_producto)
+    if request.method == "POST":
+        producto.delete()
+        return redirect("productos_list")
+    return redirect("productos_list")
