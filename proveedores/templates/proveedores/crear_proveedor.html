@@ -20,6 +20,16 @@
             {% endif %}
 
             <div class="mb-3">
+                <label class="form-label">N° Proveedor</label>
+                {{ form.nro_proveedor }}
+                {% if form.nro_proveedor.errors %}
+                <div class="text-danger small">
+                    {{ form.nro_proveedor.errors }}
+                </div>
+                {% endif %}
+            </div>
+            
+            <div class="mb-3">
                 <label class="form-label">Nombre</label>
                 {{ form.nombre }}
                 {% if form.nombre.errors %}
@@ -45,16 +55,6 @@
                 {% if form.email.errors %}
                 <div class="text-danger small">
                     {{ form.email.errors }}
-                </div>
-                {% endif %}
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">N° Cliente</label>
-                {{ form.nro_proveedor }}
-                {% if form.nro_proveedor.errors %}
-                <div class="text-danger small">
-                    {{ form.nro_proveedor.errors }}
                 </div>
                 {% endif %}
             </div>
