@@ -1,12 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Productos
 from .forms import ProductoForm, ProductoUpdateForm
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def productos_list(request):
     productos_list = Productos.objects.all()
     return render(request, "productos/productos_list.html", {"productos_list": productos_list})
 
-
+@login_required
 def listar_productos(request):
     descripcion = request.GET.get("descripcion")
     productos_query = Productos.objects.all()    # [:10] 
@@ -19,7 +21,7 @@ def listar_productos(request):
     }
     return render(request, "productos/productos_list.html", context)
 
-
+@login_required
 def ver_producto(request, cod_producto):
     try:
         producto = Productos.objects.get(cod_producto=cod_producto)
@@ -30,6 +32,7 @@ def ver_producto(request, cod_producto):
     }
     return render(request, "productos/ver_producto.html",context)
 
+@login_required
 def crear_producto(request):
     if request.method == "POST":
         form = ProductoForm(request.POST)
@@ -41,6 +44,7 @@ def crear_producto(request):
 
     return render(request, "productos/crear_producto.html", {"form": form})
 
+@login_required
 def actualizar_producto(request, cod_producto):
     producto = get_object_or_404(Productos, cod_producto=cod_producto)
     if request.method == "POST":
@@ -54,7 +58,7 @@ def actualizar_producto(request, cod_producto):
     context = {"form": form}
     return render(request, "clientes/actualizar_cliente.html", context)
 
-
+@login_required
 def eliminar_producto(request, cod_producto):
     producto = get_object_or_404(Productos, cod_producto=cod_producto)
     if request.method == "POST":

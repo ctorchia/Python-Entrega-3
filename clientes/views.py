@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from clientes.models import Clientes
 from clientes.forms import ClienteForm, ClienteUpdateForm
+from django.contrib.auth.decorators import login_required
+
 
 def inicio(request):
     return render(request, "clientes/inicio.html")
 
+@login_required
 def listar_clientes(request):
     nombre = request.GET.get("nombre")
     clientes_query = Clientes.objects.all()    # [:10] 
@@ -17,6 +20,7 @@ def listar_clientes(request):
     }
     return render(request, "clientes/clientes_list.html", context)
 
+@login_required
 def ver_cliente(request, nro_cliente):
     try:
         cliente = Clientes.objects.get(nro_cliente=nro_cliente)
@@ -27,6 +31,7 @@ def ver_cliente(request, nro_cliente):
     }
     return render(request, "clientes/ver_cliente.html",context)
 
+@login_required
 def crear_cliente(request):
     if request.method == "POST":
         form = ClienteForm(request.POST)
@@ -40,7 +45,7 @@ def crear_cliente(request):
         "form": form
     })
 
-
+@login_required
 def actualizar_cliente(request, nro_cliente):
     cliente = get_object_or_404(Clientes, nro_cliente=nro_cliente)
     if request.method == "POST":
@@ -54,7 +59,7 @@ def actualizar_cliente(request, nro_cliente):
     context = {"form": form}
     return render(request, "clientes/actualizar_cliente.html", context)
 
-
+@login_required
 def eliminar_cliente(request, nro_cliente):
     cliente = get_object_or_404(Clientes, nro_cliente=nro_cliente)
     if request.method == "POST":
