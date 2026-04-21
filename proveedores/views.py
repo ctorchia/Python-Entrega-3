@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from proveedores.models import Proveedores
@@ -9,7 +10,7 @@ from django.views.generic import(
     UpdateView
 )
 
-class ProveedoresListView(ListView):
+class ProveedoresListView(LoginRequiredMixin, ListView):
     model = Proveedores
     template_name = "proveedores/proveedores_list.html"
     context_object_name = "proveedores_list"
@@ -22,7 +23,7 @@ class ProveedoresListView(ListView):
         return queryset
     
 
-class ProveedoresDetailView(DetailView):
+class ProveedoresDetailView(LoginRequiredMixin, DetailView):
     model = Proveedores
     template_name = "proveedores/ver_proveedor.html"
     context_object_name = "proveedor"
@@ -30,7 +31,7 @@ class ProveedoresDetailView(DetailView):
     slug_url_kwarg = "nro_proveedor"
     
 
-class ProveedoresDeleteView(DeleteView):
+class ProveedoresDeleteView(LoginRequiredMixin, DeleteView):
     model = Proveedores
     slug_field = "nro_proveedor"
     slug_url_kwarg = "nro_proveedor"
@@ -38,7 +39,7 @@ class ProveedoresDeleteView(DeleteView):
     success_url = reverse_lazy("proveedores_list")
 
 
-class ProveedoresUpdateView(UpdateView):
+class ProveedoresUpdateView(LoginRequiredMixin, UpdateView):
     model = Proveedores
     fields = ["nombre", "cuit"]
     slug_field = "nro_proveedor"
@@ -46,7 +47,7 @@ class ProveedoresUpdateView(UpdateView):
     success_url = reverse_lazy("proveedores_list")
 
 
-class ProveedoresCreateView(CreateView):
+class ProveedoresCreateView(LoginRequiredMixin, CreateView):
     model = Proveedores
     template_name = "proveedores/crear_proveedor.html"
     fields = ["nro_proveedor", "nombre", "cuit", "email"]
