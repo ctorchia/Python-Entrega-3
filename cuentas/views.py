@@ -3,6 +3,9 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from cuentas.forms import *
 
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
+
 
 def register(request):
     if request.method == "POST":
@@ -32,4 +35,21 @@ def profile_change(request):
         form = PerfilChangeForm(instance=request.user)
     
     return render(request, "cuentas/perfil_change.html", {"form": form})
+
     
+@login_required
+def password(request):
+
+    if request.method == "POST":
+        form = PasswordChangeForm(user=request.user, data=request.POST)
+
+        if form.is_valid():
+            user = form.save()
+
+            update_session_auth_hash(request, user)
+
+            return redirect("perfil_detail")
+    else:
+        form = PasswordChangeForm(user=request.user)
+
+    return render(request, "cuentas/password.html", {"form": form})

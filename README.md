@@ -9,3 +9,9 @@ Instrucciones para ejecutar el proyecto:
 
 3. Ejecutar el servidor:
    python manage.py runserver 
+
+
+
+Link al video que muestra el funcionamiento de la APP:
+
+https://drive.google.com/file/d/1FnqxhjBwdhbeeNaM6H_KvrvmVkzibfy8/view?usp=sharing

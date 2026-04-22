@@ -9,4 +9,6 @@ urlpatterns = [
     path("register/", register, name="register"),
     path("perfil/", profile_detail, name="perfil_detail"),
     path("perfil/change", profile_change, name="perfil_change"),
+    path("password/", password, name="password"),
+
 ]
