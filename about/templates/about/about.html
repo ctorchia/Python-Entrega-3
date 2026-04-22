@@ -1,16 +1,33 @@
 {% extends "clientes/inicio.html" %}
 
+{% load static %}
+
 {% block titulo %} Acerca de Mi {%endblock%}
 
 {% block CardSection %} {% endblock %}
 
 {% block content %}
 
-<div class="container mt-5 d-flex justify-content-center">
-    <div class="card p-4" style="width: 35rem;">
-        <h3 class="text-center mb-4">Acerca de Mi</h3>
-
+<div class="container my-5" style="max-width: 700px;">
+  <h2 class="fw-bold mb-4 text-center">Acerca de Mi</h2>
+  <div class="card shadow-sm p-3">
+    <div class="row g-0">
+      <div class="col-md-4 d-flex justify-content-center align-items-center">
+        <img src="{% static 'about/images/about.jpg' %}" alt="Avatar" class="img-fluid rounded-circle shadow-sm" style="max-height:180px;">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <p><strong>Nombre y apellido: </strong>Cristian Torchia</p>
+          <p><strong>Edad:</strong> 46 años</p>
+          <p><strong>Nacionalidad:</strong> Argentina</p>
+          <p><strong>Posición Laboral:</strong> Lider de IT</p>
+          <p><strong>Experiencia:</strong> 20 Años de experiencia en el área. Gestión de Infraestructura tecnológica
+            como Redes, Servidores, Endpoints, ERP, etc.</p>
+        </div>
+      </div>
     </div>
+    
+  </div>
 </div>
 
 {% endblock %}
